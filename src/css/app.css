@@ -1,0 +1,27 @@
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  letter-spacing: 0.1em;
+}
+p {
+  text-align: left;
+}
+.w-1200 {
+  width: 1200px !important;
+  margin-left: -120px !important;
+}
+.min-w-160 {
+  min-width: 160px;
+}
+.color-red {
+  color: red;
+}
+.color-grey {
+  color: #8c8c8c;
+}
+.right-down-corner {
+  position: absolute;
+  right: 50px;
+  bottom: -500px;
+}
+.text-align-left {
+  text-align: left;
+}

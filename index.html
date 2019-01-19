@@ -1,49 +1,211 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Work Report</title>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/sky.css">
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+  <!-- 引入 bootstrap 样式文件 -->
+  <link rel="stylesheet" href="src/lib/bootstrap.css">
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="src/css/app.css">
+  <link rel="stylesheet" href="src/cases/case-dropdown/infinite-dropdown.css">
+  <!-- Printing and PDF exports -->
+  <script>
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+  document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+<body ng-app="myApp">
+<div class="reveal">
+  <div class="slides">
+    <section>
+      <h2>述职报告</h2>
+      <div class="fragment fade-up">
+        <div>软件研发部</div>
+        <div>聂骁骏</div>
+      </div>
+    </section>
+    <section>
+      <h3>我心中的尚阳</h3>
+      <ul>
+        <li class="fragment fade-up">待人友善</li>
+        <li class="fragment fade-up">工作积极</li>
+        <li class="fragment fade-up">气氛活跃</li>
+      </ul>
+    </section>
+    <section>
+      <section>
+        <h3>对指令的理解</h3>
+        <p>与 Vue 和 React 不同，AngularJS 在 1.5 版本之前是没有组件方法的。</p>
+        <p class="fragment fade-up">指令有四种类型：</p>
+        <ul class="fragment fade-up text-align-left">
+          <li><span class="color-red">元素名称(E)</span>: &lt;my-dir&gt;&lt;/my-dir&gt;</li>
+          <li><span class="color-red">属性(A)</span>: &lt;span my-dir="exp"&gt;&lt;/span&gt;</li>
+          <li>类名(C): &lt;span class="my-dir: exp;"&gt;</span></li>
+          <li>注释(M): &lt;!-- directive: my-dir exp --&gt;</li>
+        </ul>
+      </section>
+      <section class="dropdown-demo">
+        <h4>下拉菜单 DEMO</h4>
+        <p>原方案：引入整个 UI 库 <span class="color-red">layui</span> ，使用其中的下拉菜单组件 (其他页面还使用了日历组件)</p>
+        <p>
+          新方案：使用 <span class="color-red">angularJS</span> 和 <span class="color-red">bootstrap</span> 创建下拉菜单组件,
+          并使用 layui 官方提供的独立日历库 <span class="color-red">layDate</span>
+        </p>
+        <div class="fragment fade-up" ng-controller="myController" style="position:fixed;left:0;top:0">
+          <infinite-dropdown selected-item="selectedCompany" list-array="companiesArray"></infinite-dropdown>
+        </div>
+        <div class="fragment fade-up">
+          <p>
+            优点：不需要引入整个 UI 库，减少首屏加载时间
+          </p>
+          <p>
+            缺点：某一级的公司太多时，菜单会超出屏幕高度
+          </p>
+        </div>
+      </section>
+      <section
+        data-markdown="src/markdown/infinite-dropdown.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+        <!--
+            Note that Windows uses `\r\n` instead of `\n` as its linefeed character.
+            For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
+        -->
+      </section>
+      <section
+        data-markdown="src/markdown/infinite-submenu.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+    </section>
+    <section>
+      <section>
+        <h3>合理的组件设计</h3>
+        <div>将<span class="color-red">不变的</span>和<span class="color-red">变化的</span>部分分隔开来</div>
+      </section>
+      <section>
+        <h4>分页组件 DEMO</h4>
+      </section>
+      <section>
+        <ul>
+          <li>不变的：监听当前页的变化，此职责应该属于组件</li>
+          <li>变化的：监听到变化后做的事情，此职责应该属于页面</li>
+        </ul>
+      </section>
+    </section>
+    <section>
+      <section>
+        <h3>避免重排版</h3>
+        <p>当元素的<span class="color-red">尺寸</span>和<span class="color-red">位置</span>发生变化时，浏览器需要重新计算其属性以及其他受影响元素的属性，这时会发生重排版。</p>
+        <p class="fragment fade-up">下述情况会发生重排版：</p>
+        <ul class="fragment fade-up">
+          <li>添加或删除可见的 DOM 元素；</li>
+          <li>元素位置和尺寸的改变；</li>
+          <li>页面首次渲染；</li>
+          <li>改变浏览器的窗口尺寸等。</li>
+        </ul>
+      </section>
+      <section>
+        <p>大多数浏览器通过<span class="color-red">队列化修改</span>和<span class="color-red">批量显示</span>优化重排版过程。</p>
+        <p class="fragment fade-up">获取<span class="color-red">布局信息</span>的操作将导致刷新队列动作：</p>
+        <ul class="fragment fade-up">
+          <li>offsetTop, offsetLeft, offsetWidth, offsetHeight</li>
+          <li>clientTop, clientLeft, clientWidth, clientHeight</li>
+          <li>scrollTop, scrollLeft, scrollWidth, scrollHeight</li>
+          <li>非IE: getComputedStyle(elm, null), IE: elm.currentStyle</li>
+        </ul>
+      </section>
+    </section>
+    <section>
+      <section>
+        <h3>页面性能优化 </h3>
+        <p>进入会议室预约页面时，等待时间过长</p>
+        <p>使用谷歌浏览器开发工具中的 <span class="color-red">Performance</span> 对页面进行优化</p>
+      </section>
+      <section data-background-image="src/images/enter-meeting-room-before.png">
+        <h4 class="right-down-corner">修改前</h4>
+      </section>
+      <section data-background-image="src/images/enter-meeting-room-after.png">
+        <h4 class="right-down-corner">修改后</h4>
+      </section>
+      <section class="w-1200">
+        <h3>页面加载时间对比</h3>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Timer Fired</th>
+            <th>XHR Load(1)</th>
+            <th>Recalculate Style</th>
+            <th>XHR Load(2)</th>
+            <th class="min-w-160 color-red"> Total</th>
+          </tr>
+          <tr>
+            <td>Before</td>
+            <td>2.39 s</td>
+            <td>1.89 s</td>
+            <td>0.24 s</td>
+            <td>0.90 s</td>
+            <td class="color-red">5.42 s</td>
+          </tr>
+          <tr>
+            <td>After</td>
+            <td>1.37 s</td>
+            <td>0.60 s</td>
+            <td>0.25 s</td>
+            <td>0.95 s</td>
+            <td class="color-red">2.96 s</td>
+          </tr>
+        </table>
+        <p class="color-grey">XHR load 1: /api/notice/query</p>
+        <p class="color-grey">XHR load 2: /api/monitor/meetingRoomOccupy</p>
+      </section>
+    </section>
+  </div>
+</div>
 
-		<title>reveal.js</title>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
-
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
-
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
-
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+<script>
+// More info about config & dependencies:
+// - https://github.com/hakimel/reveal.js#configuration
+// - https://github.com/hakimel/reveal.js#dependencies
+Reveal.initialize({
+  dependencies: [
+    {src: 'plugin/markdown/marked.js'},
+    {src: 'plugin/markdown/markdown.js'},
+    {src: 'plugin/notes/notes.js', async: true},
+    {
+      src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+        hljs.initHighlightingOnLoad();
+      }
+    }
+  ],
+  slideNumber: true,// Display the page number of the current slide
+  pdfSeparateFragments: false,// let all the fragment steps in a slide to be printed in one pdf page
+});
+</script>
+<!-- 库 -->
+<script src="./src/lib/jquery.js"></script>
+<script src="./src/lib/bootstrap.js"></script>
+<script src="./src/lib/angular.min.js"></script>
+<!-- 自定义文件 -->
+<script src="./src/cases/case-dropdown/my-app.js"></script>
+<script src="./src/cases/case-dropdown/infinite-dropdown.directive.js"></script>
+<script src="./src/cases/case-dropdown/infinite-submenu.directive.js"></script>
+</body>
 </html>

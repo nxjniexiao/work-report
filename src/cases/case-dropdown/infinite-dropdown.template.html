@@ -1,0 +1,13 @@
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="infiniteDropdownMenu" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="true">
+    {{selectedItem.label}}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="infiniteDropdownMenu">
+    <li ng-repeat="item in listArray" ng-class="{'dropdown-submenu': item.children}">
+      <a href="#" data-company-id="{{item.value}}" data-company-name="{{item.label}}">{{item.label}}</a>
+      <infinite-submenu ng-if="item.children" list-array="item.children"></infinite-submenu>
+    </li>
+  </ul>
+</div>
