@@ -162,11 +162,14 @@
         <p>进入会议室预约页面时，等待时间过长</p>
         <p>使用谷歌浏览器开发工具中的 <span class="color-red">Performance</span> 对页面进行优化</p>
       </section>
-      <section data-background-image="src/images/enter-meeting-room-before.png">
-        <h4 class="right-down-corner">修改前</h4>
+      <section data-background-image="src/images/enter-meeting-room-origin.png">
+        <h4 class="right-down-corner">原始版本</h4>
       </section>
-      <section data-background-image="src/images/enter-meeting-room-after.png">
-        <h4 class="right-down-corner">修改后</h4>
+      <section data-background-image="src/images/enter-meeting-room-opt1.png">
+        <div class="right-down-corner">
+          <h4>优化1</h4>
+          <p>删除 index.html 中引入 angular-touch.js 的 script 标签</p>
+        </div>
       </section>
       <section class="w-1200">
         <h3>页面加载时间对比</h3>
@@ -177,10 +180,10 @@
             <th>XHR Load(1)</th>
             <th>Recalculate Style</th>
             <th>XHR Load(2)</th>
-            <th class="min-w-160 color-red"> Total</th>
+            <th class="min-w-160 color-red">Total</th>
           </tr>
           <tr>
-            <td>Before</td>
+            <td>Origin</td>
             <td>2.39 s</td>
             <td>1.89 s</td>
             <td>0.24 s</td>
@@ -188,7 +191,7 @@
             <td class="color-red">5.42 s</td>
           </tr>
           <tr>
-            <td>After</td>
+            <td>opt1</td>
             <td>1.37 s</td>
             <td>0.60 s</td>
             <td>0.25 s</td>
@@ -198,6 +201,120 @@
         </table>
         <p class="color-grey">XHR load 1: /api/notice/query</p>
         <p class="color-grey">XHR load 2: /api/monitor/meetingRoomOccupy</p>
+      </section>
+      <section data-background-image="src/images/meeting-room-notice.png">
+        <h4>优化通知窗口</h4>
+        <p>鼠标移入通知区域，弹出通知窗口时，有一定的延迟</p>
+      </section>
+      <section data-background-image="src/images/notices-origin.png">
+        <div class="right-down-corner">
+          <p>原始通知窗口显示时的性能:</p>
+          <div class="fragment fade-up">
+            <p><span class="color-red">8602</span> 个单元发生了样式重计算</p>
+            <p><span class="color-red">16022</span> 个节点中有 <span class="color-red">15763</span> 个发生了布局计算(大小及位置)</p>
+          </div>
+        </div>
+      </section>
+      <section
+        data-markdown="src/markdown/notice-origin.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+      <section data-background-image="src/images/notices-opt.png">
+        <div class="right-down-corner">
+          <p>优化后通知窗口显示时的性能:</p>
+          <div class="fragment fade-up">
+            <p><span class="color-blue">136</span> 个单元发生了样式重计算</p>
+            <p><span class="color-blue">2213</span> 个节点中有 <span class="color-blue">241</span> 个发生了布局计算(大小及位置)</p>
+          </div>
+        </div>
+      </section>
+      <section class="w-1200">
+        <h3>通知窗口加载时间对比</h3>
+        <table>
+          <tr class="font-size-30">
+            <th>Item</th>
+            <th>Event mouseover</th>
+            <th class="fragment highlight-red">Recalculate Style</th>
+            <th class="fragment highlight-red min-w-160">layout</th>
+            <th>Update LayerTree</th>
+            <th class="min-w-160">paint</th>
+            <th class="min-w-160 color-red">Total</th>
+          </tr>
+          <tr class="font-size-30">
+            <td>Origin</td>
+            <td>6 ms</td>
+            <td>275 ms</td>
+            <td>154 ms</td>
+            <td>26 ms</td>
+            <td>13 ms</td>
+            <td class="color-red">474 ms</td>
+          </tr>
+          <tr class="font-size-30">
+            <td>Opt</td>
+            <td>2 ms</td>
+            <td>5 ms</td>
+            <td>3 ms</td>
+            <td>13 ms</td>
+            <td>3 ms</td>
+            <td class="color-red">26 ms</td>
+          </tr>
+        </table>
+        <div class="fragment fade-up">
+          <p class="color-grey font-size-30">
+            优化前: <span class="color-red">8602</span> 个单元发生了样式重计算，
+            <span class="color-red">15763/16022</span> 个单元发生了样式重计算
+          </p>
+          <p class="color-grey font-size-30">
+            优化后: <span class="color-blue margin-left-18">136</span> 个节点发生了样式重计算，
+            <span class="color-blue margin-left-52">241/2213</span> 个节点发生了样式重计算
+          </p>
+        </div>
+      </section>
+      <section data-background-image="src/images/enter-meeting-room-opt2.png">
+        <div class="right-down-corner">
+          <p>优化通知窗口后，页面加载时间也得到了改善</p>
+        </div>
+      </section>
+      <section class="w-1200">
+        <h3>页面加载时间对比</h3>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th class="min-w-190">Timer Fired</th>
+            <th>XHR Load(1)</th>
+            <th>Recalculate Style</th>
+            <th>XHR Load(2)</th>
+            <th class="min-w-160 color-red">Total</th>
+          </tr>
+          <tr>
+            <td>Origin</td>
+            <td>2.39 s</td>
+            <td>1.89 s</td>
+            <td>0.24 s</td>
+            <td>0.90 s</td>
+            <td class="color-red">5.42 s</td>
+          </tr>
+          <tr>
+            <td>Opt1</td>
+            <td>1.37 s</td>
+            <td>0.60 s</td>
+            <td>0.25 s</td>
+            <td>0.95 s</td>
+            <td class="color-red">2.96 s</td>
+          </tr>
+          <tr>
+            <td>Opt2</td>
+            <td>455 ms</td>
+            <td>76 ms</td>
+            <td>8 ms</td>
+            <td>937 ms</td>
+            <td class="color-red">1.48 s</td>
+          </tr>
+        </table>
       </section>
     </section>
   </div>

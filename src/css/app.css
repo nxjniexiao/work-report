@@ -11,8 +11,20 @@ p {
 .min-w-160 {
   min-width: 160px;
 }
+.min-w-190 {
+  min-width: 190px;
+}
+.margin-left-18 {
+  margin-left: 18px !important;
+}
+.margin-left-52 {
+  margin-left: 52px !important;
+}
 .color-red {
   color: red;
+}
+.color-blue {
+  color: #40a9ff;
 }
 .color-grey {
   color: #8c8c8c;
@@ -24,4 +36,7 @@ p {
 }
 .text-align-left {
   text-align: left;
+}
+.font-size-30 {
+  font-size: 30px !important;
 }
