@@ -13,6 +13,7 @@
   <!-- 自定义样式 -->
   <link rel="stylesheet" href="src/css/app.css">
   <link rel="stylesheet" href="src/cases/case-dropdown/infinite-dropdown.css">
+  <link rel="stylesheet" href="src/cases/case-pagination/tm.pagination.css">
   <!-- Printing and PDF exports -->
   <script>
   var link = document.createElement('link');
@@ -22,7 +23,7 @@
   document.getElementsByTagName('head')[0].appendChild(link);
   </script>
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="myController" >
 <div class="reveal">
   <div class="slides">
     <section>
@@ -85,7 +86,7 @@
           新方案：使用 <span class="color-red">angularJS</span> 和 <span class="color-red">bootstrap</span> 创建下拉菜单组件,
           并使用 layui 官方提供的独立日历库 <span class="color-red">layDate</span>
         </p>
-        <div class="fragment fade-up" ng-controller="myController" style="position:fixed;left:0;top:0">
+        <div class="fragment fade-up" style="position:fixed;left:0;top:0">
           <infinite-dropdown selected-item="selectedCompany" list-array="companiesArray"></infinite-dropdown>
         </div>
         <div class="fragment fade-up">
@@ -123,8 +124,20 @@
         <h3>合理的组件设计</h3>
         <div>将<span class="color-red">不变的</span>和<span class="color-red">变化的</span>部分分隔开来</div>
       </section>
-      <section>
+      <section
+        data-markdown="src/markdown/pagination-watch-origin.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+      <section class="pagination-demo">
         <h4>分页组件 DEMO</h4>
+        <ul>
+          <li ng-repeat="item in partialListArray">{{item}}</li>
+        </ul>
+        <tm-pagination config="paginationConfig" callback="filterListArray()"></tm-pagination>
       </section>
       <section>
         <ul>
@@ -347,8 +360,9 @@ Reveal.initialize({
 <script src="./src/lib/bootstrap.js"></script>
 <script src="./src/lib/angular.min.js"></script>
 <!-- 自定义文件 -->
-<script src="./src/cases/case-dropdown/my-app.js"></script>
+<script src="src/cases/my-app.js"></script>
 <script src="./src/cases/case-dropdown/infinite-dropdown.directive.js"></script>
 <script src="./src/cases/case-dropdown/infinite-submenu.directive.js"></script>
+<script src="./src/cases/case-pagination/tm.pagination.js"></script>
 </body>
 </html>

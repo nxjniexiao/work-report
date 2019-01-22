@@ -1,0 +1,61 @@
+.page-list {
+  position: absolute;
+  bottom: -40px;
+  right: 200px;
+}
+
+.page-list span {
+  font-size: 20px !important;
+}
+
+.page-list div {
+  margin-left: 20px !important;
+  font-size: 20px !important;
+  line-height: 40px !important;
+}
+
+.table-scrollable {
+  border: none;
+}
+
+.page-list .pagination {
+  float: left;
+}
+
+.page-list .pagination span {
+  cursor: pointer;
+}
+
+.page-list .pagination .separate span {
+  cursor: default;
+  border-top: none;
+  border-bottom: none;
+}
+
+.page-list .pagination .separate span:hover {
+  background: none;
+}
+
+.page-list .page-total {
+  float: left;
+  /*margin: 20px 20px;*/
+  line-height: 34px;
+}
+
+.page-list .page-total input, .page-list .page-total select {
+  height: 24px;
+  border: 1px solid #ddd;
+}
+
+.page-list .page-total input {
+  width: 30px;
+  text-align: center;
+}
+
+.page-list .page-total select {
+  /*width: 50px;*/
+}
+
+.separate span {
+  background: none !important;
+}
