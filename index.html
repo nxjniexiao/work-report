@@ -45,12 +45,14 @@
       <section>
         <h3>工作汇总</h3>
         <ul>
-          <li>金茂 H5: View + ViewX</li>
+          <li>金茂 H5: Vue + VueX</li>
           <li>金茂 Web: AngularJS</li>
         </ul>
       </section>
       <section>
         <h4>金茂 H5</h4>
+        <img src="src/images/H5-1.png" style="width: 300px" alt="">
+        <img src="src/images/H5-2.png" style="width: 300px" alt="">
       </section>
       <section>
         <h4>金茂 WEB</h4>
@@ -71,6 +73,7 @@
       <section>
         <h3>对指令的理解</h3>
         <p>与 Vue 和 React 不同，AngularJS 在 1.5 版本之前是没有组件方法的。</p>
+        <p>AngularJS 中组件是指令的一种。</p>
         <p class="fragment fade-up">指令有四种类型：</p>
         <ul class="fragment fade-up text-align-left">
           <li><span class="color-red">元素名称(E)</span>: &lt;my-dir&gt;&lt;/my-dir&gt;</li>
@@ -120,9 +123,15 @@
       </section>
     </section>
     <section>
-      <section>
+      <section class="pagination-demo">
         <h3>合理的组件设计</h3>
-        <div>将<span class="color-red">不变的</span>和<span class="color-red">变化的</span>部分分隔开来</div>
+        <div class="fragment fade-up">
+          <div>分页组件 DEMO</div>
+          <ul>
+            <li ng-repeat="item in partialListArray">{{item}}</li>
+          </ul>
+          <tm-pagination config="paginationConfig" callback="filterListArray()"></tm-pagination>
+        </div>
       </section>
       <section
         data-markdown="src/markdown/pagination-watch-origin.markdown"
@@ -132,18 +141,20 @@
         data-charset="utf-8"
         class="w-1200">
       </section>
-      <section class="pagination-demo">
-        <h4>分页组件 DEMO</h4>
-        <ul>
-          <li ng-repeat="item in partialListArray">{{item}}</li>
-        </ul>
-        <tm-pagination config="paginationConfig" callback="filterListArray()"></tm-pagination>
-      </section>
       <section>
+        <p>将<span class="color-red">不变的</span>和<span class="color-red">变化的</span>分隔开来:</p>
         <ul>
           <li>不变的：监听当前页的变化，此职责应该属于组件</li>
           <li>变化的：监听到变化后做的事情，此职责应该属于页面</li>
         </ul>
+      </section>
+      <section
+        data-markdown="src/markdown/pagination-watch-opt.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
       </section>
     </section>
     <section>

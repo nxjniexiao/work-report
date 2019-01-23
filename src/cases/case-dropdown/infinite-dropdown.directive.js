@@ -20,6 +20,7 @@ angular.module('myApp').directive('infiniteDropdown', [function() {
         id
       };
       scope.$apply();
+      // return false;
     });
   }
 }]);

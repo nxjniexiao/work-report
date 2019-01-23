@@ -2,7 +2,7 @@
 ```html
 <tm-pagination config="paginationConfig"></tm-pagination>
 ```
-页面中监听当前页和每页显示的数目:
+<span class="color-red">页面中</span>监听页面变化:
 ```js
 $scope.$watch(
   'paginationConf.currentPage + "|" + paginationConf.itemsPerPage',
