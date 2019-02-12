@@ -20,6 +20,15 @@ p {
 .margin-left-52 {
   margin-left: 52px !important;
 }
+.margin-left-200 {
+  margin-left: 200px !important;
+}
+.margin-top-30 {
+  margin-top: 30px !important;
+}
+.margin-top-10 {
+  margin-top: 10px !important;
+}
 .color-red {
   color: red;
 }
@@ -36,6 +45,9 @@ p {
 }
 .text-align-left {
   text-align: left;
+}
+.text-align-right {
+  text-align: right;
 }
 .font-size-30 {
   font-size: 30px !important;

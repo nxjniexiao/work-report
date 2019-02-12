@@ -341,6 +341,10 @@
         // $scope.partialListArray = $scope.listArray.slice(3, 3);
       };
       $scope.filterListArray();// 初始化
+      $scope.startDate = '2019-02-20';
+      $scope.startTime = '11:20';
+      $scope.endDate = '2019-02-20';
+      $scope.endTime = '11:20';
     }
   ]);
 })(window.angular);

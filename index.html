@@ -23,7 +23,7 @@
   document.getElementsByTagName('head')[0].appendChild(link);
   </script>
 </head>
-<body ng-app="myApp" ng-controller="myController" >
+<body ng-app="myApp" ng-controller="myController">
 <div class="reveal">
   <div class="slides">
     <section>
@@ -46,7 +46,7 @@
         <h3>工作汇总</h3>
         <ul>
           <li>金茂 H5: Vue + VueX</li>
-          <li>金茂 Web: AngularJS</li>
+          <li>金茂/东方锅炉 Web: AngularJS</li>
         </ul>
       </section>
       <section>
@@ -55,7 +55,7 @@
         <img src="src/images/H5-2.png" style="width: 300px" alt="">
       </section>
       <section>
-        <h4>金茂 WEB</h4>
+        <h4>金茂/东方锅炉 WEB</h4>
       </section>
     </section>
     <section>
@@ -73,7 +73,7 @@
       <section>
         <h3>对指令的理解</h3>
         <p>与 Vue 和 React 不同，AngularJS 在 1.5 版本之前是没有组件方法的。</p>
-        <p>AngularJS 中组件是指令的一种。</p>
+        <p>AngularJS 中组件是一种特殊的指令。</p>
         <p class="fragment fade-up">指令有四种类型：</p>
         <ul class="fragment fade-up text-align-left">
           <li><span class="color-red">元素名称(E)</span>: &lt;my-dir&gt;&lt;/my-dir&gt;</li>
@@ -126,7 +126,28 @@
       <section class="pagination-demo">
         <h3>合理的组件设计</h3>
         <div class="fragment fade-up">
-          <div>分页组件 DEMO</div>
+          <div class="text-align-left">
+            让程序尽量遵守<span class="color-red">开放-封闭原则</span>的规律，是找出程序中将要发生变化的地方，
+            然后把<span class="color-red">变化</span>封装起来。
+          </div>
+          <div class="text-align-right"> ——《JS设计模式与开发实践》</div>
+        </div>
+        <div class="fragment fade-up text-align-left">
+          <span class="color-red">合理的组件设计:</span>
+          找出组件中将要发生变化的地方，然后把<span class="color-red">变化</span>封装起来。
+        </div>
+        <div class="fragment fade-up ">
+          <div class="text-align-left color-red">如何封装变化:</div>
+          <ul>
+            <li>向组件中传值(基本数据和对象，如开源库的配置文件)</li>
+            <li>放置挂钩(layDate 中的ready/change/done 挂钩)</li>
+            <li>向组件中传入回调函数(特殊的挂钩)</li>
+          </ul>
+        </div>
+      </section>
+      <section class="pagination-demo">
+        <h3>DEMO 1 - 分页组件</h3>
+        <div class="fragment fade-up">
           <ul>
             <li ng-repeat="item in partialListArray">{{item}}</li>
           </ul>
@@ -142,11 +163,15 @@
         class="w-1200">
       </section>
       <section>
-        <p>将<span class="color-red">不变的</span>和<span class="color-red">变化的</span>分隔开来:</p>
-        <ul>
-          <li>不变的：监听当前页的变化，此职责应该属于组件</li>
-          <li>变化的：监听到变化后做的事情，此职责应该属于页面</li>
-        </ul>
+        <div class="text-align-left">不足之处：职责有点混乱，页面与组件之间的耦合性不够弱。</div>
+        <div class="fragment fade-up">
+          <p>将<span class="color-red">不变的</span>和<span class="color-red">变化的</span>分隔开来:</p>
+          <ul>
+            <li>不变的：监听当前页的变化，此职责应该属于组件</li>
+            <li>变化的：监听到变化后做的事情，此职责应该属于页面</li>
+          </ul>
+        </div>
+        <div class="fragment fade-up text-align-left margin-top-30">更加合理的设计：组件内部监听变化后，执行页面委托给它的函数。</div>
       </section>
       <section
         data-markdown="src/markdown/pagination-watch-opt.markdown"
@@ -156,11 +181,33 @@
         data-charset="utf-8"
         class="w-1200">
       </section>
+      <section class="pagination-demo">
+        <h3>DEMO 2 - 会议时间选择组件</h3>
+        <div class="fragment fade-up margin-left-200">
+          <!--<date-time-selector date="startDate" time="startTime"></date-time-selector>-->
+          <!--<date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"></date-time-selector>-->
+          <form class="form-horizontal">
+            <div class="form-group form-group-10">
+              <label class="control-label col-md-2 font-size-30" style="margin-right: 30px;">开会时间</label>
+              <div class="col-md-6 margin-top-10">
+                <date-time-selector date="startDate" time="startTime"></date-time-selector>
+              </div>
+            </div>
+            <div class="form-group form-group-10">
+              <label class="control-label col-md-2 font-size-30" style="margin-right: 30px;">结束时间</label>
+              <div class="col-md-6 margin-top-10">
+                <date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"></date-time-selector>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
     </section>
     <section>
       <section>
         <h3>避免重排版</h3>
-        <p>当元素的<span class="color-red">尺寸</span>和<span class="color-red">位置</span>发生变化时，浏览器需要重新计算其属性以及其他受影响元素的属性，这时会发生重排版。</p>
+        <p>当元素的<span class="color-red">尺寸</span>和<span class="color-red">位置</span>发生变化时，浏览器需要重新计算其属性以及其他受影响元素的属性，这时会发生重排版。
+        </p>
         <p class="fragment fade-up">下述情况会发生重排版：</p>
         <ul class="fragment fade-up">
           <li>添加或删除可见的 DOM 元素；</li>
@@ -370,10 +417,12 @@ Reveal.initialize({
 <script src="./src/lib/jquery.js"></script>
 <script src="./src/lib/bootstrap.js"></script>
 <script src="./src/lib/angular.min.js"></script>
+<script src="./src/lib/laydate/laydate.js"></script>
 <!-- 自定义文件 -->
 <script src="src/cases/my-app.js"></script>
 <script src="./src/cases/case-dropdown/infinite-dropdown.directive.js"></script>
 <script src="./src/cases/case-dropdown/infinite-submenu.directive.js"></script>
 <script src="./src/cases/case-pagination/tm.pagination.js"></script>
+<script src="./src/cases/case-date-time-picker/date-time-selector.js"></script>
 </body>
 </html>
