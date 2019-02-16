@@ -171,7 +171,7 @@
             <li>变化的：监听到变化后做的事情，此职责应该属于页面</li>
           </ul>
         </div>
-        <div class="fragment fade-up text-align-left margin-top-30">更加合理的设计：组件内部监听变化后，执行页面委托给它的函数。</div>
+        <div class="fragment fade-up text-align-left margin-top-30">更加合理的设计：组件内部监听变化后，执行页面委托给组件的函数。</div>
       </section>
       <section
         data-markdown="src/markdown/pagination-watch-opt.markdown"
@@ -184,17 +184,34 @@
       <section data-state="demo2-state-in">
         <h3>DEMO 2 - 会议时间选择组件</h3>
         <div class="fragment fade-up">
-          <div class="text-align-left">组件API:</div>
+          <div class="text-align-left color-red">变化的:</div>
           <ul>
-            <li><span class="color-red">date</span>: string 日期，如：'2019-02-16'</li>
-            <li><span class="color-red">time</span>: string 时间，如：'14:00'</li>
-            <li>minDate: string 最小日期，如：'2019-02-16'</li>
-            <li>minTime: string 最小时间，如：'15:00'</li>
+            <li>date&time: 日期&时间，如：'2019-02-16'&'14:00'</li>
+            <li><span class="color-grey">minDate&minDate</span>: 最小日期&时间</li>
+          </ul>
+        </div>
+        <div class="fragment fade-up">
+          <div class="text-align-left color-red">不变的:</div>
+          <ul>
+            <li>初始化 layDate 插件</li>
+            <li>插件中选择日期和时间后，更新 model 中的值</li>
+            <li>限制插件可选日期和时间大于当前值和最小值</li>
+            <li>监听最小值，更新插件的限制条件，等等</li>
           </ul>
         </div>
       </section>
-      <section data-state="demo2-state-out">
-        <h3>test</h3>
+      <section
+        data-markdown="src/markdown/date-time-picker.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200"
+        data-state="demo2-state-out">
+        <!--
+            Note that Windows uses `\r\n` instead of `\n` as its linefeed character.
+            For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
+        -->
       </section>
     </section>
     <section>
