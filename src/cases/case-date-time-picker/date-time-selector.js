@@ -10,6 +10,7 @@ angular.module('myApp').directive('dateTimeSelector',[function() {
     controller: ['$scope', '$timeout', '$filter', controller]
   };
   function controller($scope, $timeout, $filter) {
+    initDateTime();
     var timer = null; // 防抖用定时器
     $scope.dateId = 'date-' + Math.random().toString(36).substr(2);
     $scope.timeId = 'time-' + Math.random().toString(36).substr(2);
@@ -70,7 +71,6 @@ angular.module('myApp').directive('dateTimeSelector',[function() {
     };
     // 修改时间弹窗的最小值
     $scope.minimumTimePicker = function() {
-      console.log($scope.timePicker.config.min);
       // 打开弹窗时，限制小于当前时间的的选项
       var now = new Date();
       var nowDateStr = $filter('date')(now, 'yyyy/MM/dd');
@@ -125,5 +125,17 @@ angular.module('myApp').directive('dateTimeSelector',[function() {
       }
       timer = $timeout($scope.minimumTimePicker, 20);
     });
+    // 初始化日期和时间
+    function initDateTime() {
+      var now = new Date();
+      var nowDate = $filter('date')(now, 'yyyy-MM-dd');
+      var nowTime = $filter('date')(now, 'HH:mm');
+      if(!$scope.date) {
+        $scope.date = nowDate;
+      }
+      if(!$scope.time) {
+        $scope.time = nowTime;
+      }
+    }
   }
 }]);

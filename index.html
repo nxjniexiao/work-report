@@ -181,26 +181,20 @@
         data-charset="utf-8"
         class="w-1200">
       </section>
-      <section class="pagination-demo">
+      <section data-state="demo2-state-in">
         <h3>DEMO 2 - 会议时间选择组件</h3>
-        <div class="fragment fade-up margin-left-200">
-          <!--<date-time-selector date="startDate" time="startTime"></date-time-selector>-->
-          <!--<date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"></date-time-selector>-->
-          <form class="form-horizontal">
-            <div class="form-group form-group-10">
-              <label class="control-label col-md-2 font-size-30" style="margin-right: 30px;">开会时间</label>
-              <div class="col-md-6 margin-top-10">
-                <date-time-selector date="startDate" time="startTime"></date-time-selector>
-              </div>
-            </div>
-            <div class="form-group form-group-10">
-              <label class="control-label col-md-2 font-size-30" style="margin-right: 30px;">结束时间</label>
-              <div class="col-md-6 margin-top-10">
-                <date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"></date-time-selector>
-              </div>
-            </div>
-          </form>
+        <div class="fragment fade-up">
+          <div class="text-align-left">组件API:</div>
+          <ul>
+            <li><span class="color-red">date</span>: string 日期，如：'2019-02-16'</li>
+            <li><span class="color-red">time</span>: string 时间，如：'14:00'</li>
+            <li>minDate: string 最小日期，如：'2019-02-16'</li>
+            <li>minTime: string 最小时间，如：'15:00'</li>
+          </ul>
         </div>
+      </section>
+      <section data-state="demo2-state-out">
+        <h3>test</h3>
       </section>
     </section>
     <section>
@@ -390,7 +384,22 @@
     </section>
   </div>
 </div>
-
+<div class="" style="position:fixed;left:0;top:0" ng-show="isDemo2Shown">
+  <form class="form-horizontal">
+    <div class="form-group form-group-10">
+      <label class="control-label col-md-4 font-size-30">开会时间</label>
+      <div class="col-md-7 margin-top-10">
+        <date-time-selector date="startDate" time="startTime"></date-time-selector>
+      </div>
+    </div>
+    <div class="form-group form-group-10">
+      <label class="control-label col-md-4 font-size-30">结束时间</label>
+      <div class="col-md-7 margin-top-10">
+        <date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"></date-time-selector>
+      </div>
+    </div>
+  </form>
+</div>
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.js"></script>
 
