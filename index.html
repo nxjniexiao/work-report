@@ -123,20 +123,29 @@
       </section>
     </section>
     <section>
-      <section class="pagination-demo">
+      <section>
         <h3>合理的组件设计</h3>
         <div class="fragment fade-up">
+          <div class="text-align-left"><span class="color-red">开放-封闭原则</span>的思想：</div>
+          <div class="text-align-left">
+            当需要改变一个程序的功能或者给这个程序增加新功能的时候，
+            可以使用增加代码的方式，但是<span class="color-red">不允许改动程序的源代码</span>。
+          </div>
+        </div>
+        <div class="fragment fade-up margin-top-30">
           <div class="text-align-left">
             让程序尽量遵守<span class="color-red">开放-封闭原则</span>的规律，是找出程序中将要发生变化的地方，
             然后把<span class="color-red">变化</span>封装起来。
           </div>
-          <div class="text-align-right"> ——《JS设计模式与开发实践》</div>
         </div>
-        <div class="fragment fade-up text-align-left">
+        <div class="fragment fade-up text-align-right margin-top-30"> ——《JS设计模式与开发实践》</div>
+      </section>
+      <section>
+        <div class="text-align-left">
           <span class="color-red">合理的组件设计:</span>
           找出组件中将要发生变化的地方，然后把<span class="color-red">变化</span>封装起来。
         </div>
-        <div class="fragment fade-up ">
+        <div class="fragment fade-up margin-top-30">
           <div class="text-align-left color-red">如何封装变化:</div>
           <ul>
             <li>向组件中传值(基本数据和对象，如开源库的配置文件)</li>
