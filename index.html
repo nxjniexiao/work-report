@@ -62,7 +62,7 @@
       <section>
         <h3>工作收获</h3>
         <ul>
-          <li>对指令的理解</li>
+          <li>对angularJS中指令的理解</li>
           <li>合理的组件设计</li>
           <li>避免重排版</li>
           <li>页面性能优化</li>
@@ -84,21 +84,16 @@
       </section>
       <section class="dropdown-demo">
         <h4>下拉菜单 DEMO</h4>
-        <p>原方案：引入整个 UI 库 <span class="color-red">layui</span> ，使用其中的下拉菜单组件 (其他页面还使用了日历组件)</p>
+        <p>原方案：引入整个 UI 库 <span class="color-red">layui</span> ，使用其中的下拉菜单组件</p>
         <p>
-          新方案：使用 <span class="color-red">angularJS</span> 和 <span class="color-red">bootstrap</span> 创建下拉菜单组件,
-          并使用 layui 官方提供的独立日历库 <span class="color-red">layDate</span>
+          新方案：使用<span class="color-red"> bootstrap </span> 提供的样式，创建两个<span class="color-red"> angularJS </span>组件：
         </p>
+        <div class="fragment fade-up text-align-left">
+          <p>infinite-dropdown: 包含按钮和第一级菜单，利用事件冒泡，监听点击事件</p>
+          <p>infinite-submenu: 二级及以下菜单，如果某一个菜单有子菜单，则递归调用</p>
+        </div>
         <div class="fragment fade-up" style="position:fixed;left:0;top:0">
           <infinite-dropdown selected-item="selectedCompany" list-array="companiesArray"></infinite-dropdown>
-        </div>
-        <div class="fragment fade-up">
-          <p>
-            优点：不需要引入整个 UI 库，减少首屏加载时间
-          </p>
-          <p>
-            缺点：某一级的公司太多时，菜单会超出屏幕高度
-          </p>
         </div>
       </section>
       <section
@@ -125,7 +120,8 @@
     <section>
       <section>
         <h3>合理的组件设计</h3>
-        <div class="fragment fade-up">
+        <div class="fragment fade-up text-align-left">《JS设计模式与开发实践》中:</div>
+        <div class="fragment fade-up margin-top-30">
           <div class="text-align-left"><span class="color-red">开放-封闭原则</span>的思想：</div>
           <div class="text-align-left">
             当需要改变一个程序的功能或者给这个程序增加新功能的时候，
@@ -138,7 +134,6 @@
             然后把<span class="color-red">变化</span>封装起来。
           </div>
         </div>
-        <div class="fragment fade-up text-align-right margin-top-30"> ——《JS设计模式与开发实践》</div>
       </section>
       <section>
         <div class="text-align-left">
@@ -222,6 +217,60 @@
             For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
         -->
       </section>
+    </section>
+    <section>
+      <section>
+        <h3>代码重构</h3>
+        <div class="text-align-left">《JS设计模式与开发实践》中:</div>
+        <div class="text-align-left">
+          模式和重构之间有着一种与生俱来的关系。
+          从某种角度来看，<span class="color-red">设计模式</span>的目的就是为许多<span class="color-red">重构</span>行为提供目标。
+        </div>
+        <div class="fragment fade-up text-align-left margin-top-30">
+          重构手段：
+          <div>1. 优化 if/else 语句</div>
+          <div>2. 提炼过长的函数</div>
+        </div>
+      </section>
+      <section>
+        <h4>1. 优化 if/else 语句</h4>
+        <div class="text-align-left">
+          如果一个函数体内有一些条件分支语句，而这些条件分支语句内部散布了一些重复代码，那么就有必要进行合并去重工作。
+        </div>
+      </section>
+      <section
+        data-markdown="src/markdown/optimize-if-else-before.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+      <section
+        data-markdown="src/markdown/optimize-if-else-after.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+      <section>
+        <h4>2. 提炼过长的函数</h4>
+        <div class="text-align-left">
+          <p>在 JS 开发中，我们大部分时间都在与函数打交道。</p>
+          <p>如果一个函数过长，不得不加上若干注释才能让这个函数显得易读一些，那这些函数就很有必要进行重构。</p>
+        </div>
+      </section>
+      <section>
+        <h4>提炼函数的好处</h4>
+        <ul>
+          <li>超大函数不易阅读，小函数易于阅读</li>
+          <li>独立出来的函数有助于代码复用</li>
+          <li>独立出来的函数更容易被覆写</li>
+          <li>良好的函数命名本身就起到了注释的作用</li>
+        </ul>
+      </section>
+
     </section>
     <section>
       <section>
