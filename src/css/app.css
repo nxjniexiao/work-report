@@ -32,6 +32,9 @@ p {
 .color-red {
   color: red;
 }
+.color-white {
+  color: #fff;
+}
 .color-blue {
   color: #40a9ff;
 }

@@ -186,12 +186,14 @@
         class="w-1200">
       </section>
       <section data-state="demo2-state-in">
-        <h3>DEMO 2 - 会议时间选择组件</h3>
+        <h3>DEMO 2 - 时间选择组件</h3>
         <div class="fragment fade-up">
           <div class="text-align-left color-red">变化的:</div>
           <ul>
             <li>date&time: 日期&时间，如：'2019-02-16'&'14:00'</li>
-            <li><span class="color-grey">minDate&minDate</span>: 最小日期&时间</li>
+            <li><span class="color-grey">minDate&minTime</span>: 最小日期&时间</li>
+            <li><span class="color-grey">minutesGradient</span>: 分钟梯度，用于向后取整</li>
+            <li><span class="color-grey">increasedMinutes</span>: 计算默认时间时增加的分钟数</li>
           </ul>
         </div>
         <div class="fragment fade-up">
@@ -235,7 +237,8 @@
       <section>
         <h4>1. 优化 if/else 语句</h4>
         <div class="text-align-left">
-          如果一个函数体内有一些条件分支语句，而这些条件分支语句内部散布了一些重复代码，那么就有必要进行合并去重工作。
+          如果一个函数体内有一些条件分支语句，而这些条件分支语句内部散布了一些<span class="color-red">重复代码</span>，
+          那么就有必要进行<span class="color-red">合并去重</span>工作。
         </div>
       </section>
       <section
@@ -257,18 +260,59 @@
       <section>
         <h4>2. 提炼过长的函数</h4>
         <div class="text-align-left">
-          <p>在 JS 开发中，我们大部分时间都在与函数打交道。</p>
-          <p>如果一个函数过长，不得不加上若干注释才能让这个函数显得易读一些，那这些函数就很有必要进行重构。</p>
+          <p>在 JS 开发中，我们大部分时间都在与<span class="color-red">函数</span>打交道。</p>
+          <p>如果一个函数过长，不得不加上若干注释才能让这个函数显得易读一些，那这些函数就很有必要进行<span class="color-red">重构</span>。</p>
         </div>
       </section>
       <section>
         <h4>提炼函数的好处</h4>
         <ul>
-          <li>超大函数不易阅读，小函数易于阅读</li>
+          <li>小函数比大函数更易于阅读</li>
           <li>独立出来的函数有助于代码复用</li>
           <li>独立出来的函数更容易被覆写</li>
           <li>良好的函数命名本身就起到了注释的作用</li>
         </ul>
+      </section>
+      <section
+        data-markdown="src/markdown/large-fn.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+      <section
+        data-markdown="src/markdown/large-fn-1-structure.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+      <section data-background-image="src/images/large-fn-add-update.png">
+        <div class="color-white">新建 / 修改 混合会议的区别</div>
+      </section>
+      <section data-background-image="src/images/large-fn-mixed-or-not.png">
+        <div class="color-white">新建立即 混合会议 / 视频会议 的区别</div>
+      </section>
+      <section
+        data-markdown="src/markdown/large-fn-2-structure-optimized.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+      <section>
+        <h4>使用职责链模式</h4>
+      </section>
+      <section
+        data-markdown="src/markdown/large-fn-3-after.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
       </section>
 
     </section>
@@ -459,18 +503,19 @@
     </section>
   </div>
 </div>
-<div class="" style="position:fixed;left:0;top:0" ng-show="isDemo2Shown">
+<div class="" style="position:fixed;left:0;top:0;z-index:999;" ng-show="isDemo2Shown">
   <form class="form-horizontal">
     <div class="form-group form-group-10">
       <label class="control-label col-md-4 font-size-30">开会时间</label>
       <div class="col-md-7 margin-top-10">
-        <date-time-selector date="startDate" time="startTime"></date-time-selector>
+        <date-time-selector date="startDate" time="startTime" minutes-gradient="5"></date-time-selector>
       </div>
     </div>
     <div class="form-group form-group-10">
       <label class="control-label col-md-4 font-size-30">结束时间</label>
       <div class="col-md-7 margin-top-10">
-        <date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"></date-time-selector>
+        <date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"
+                            minutes-gradient="5" increased-minutes="60"></date-time-selector>
       </div>
     </div>
   </form>
