@@ -14,7 +14,7 @@ angular.module('myApp').directive('infiniteDropdown', [function() {
     },
     link: function(scope, element, attrs) {
       element.on('click', function(event) {
-        //省略...
+        // 利用事件冒泡监听点击事件...
       });
     }
   };

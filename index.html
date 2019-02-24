@@ -35,10 +35,10 @@
     </section>
     <section>
       <h3>我心中的尚阳</h3>
-      <ul>
-        <li class="fragment fade-up">待人友善</li>
-        <li class="fragment fade-up">工作积极</li>
-        <li class="fragment fade-up">气氛活跃</li>
+      <ul class="fragment fade-up">
+        <li>待人友善</li>
+        <li>工作积极</li>
+        <li>气氛活跃</li>
       </ul>
     </section>
     <section>
@@ -64,6 +64,7 @@
         <ul>
           <li>对angularJS中指令的理解</li>
           <li>合理的组件设计</li>
+          <li>代码重构</li>
           <li>避免重排版</li>
           <li>页面性能优化</li>
         </ul>
@@ -167,7 +168,7 @@
         class="w-1200">
       </section>
       <section>
-        <div class="text-align-left">不足之处：职责有点混乱，页面与组件之间的耦合性不够弱。</div>
+        <div class="text-align-left">不足之处：职责有点混乱，页面与组件之间存在一定的耦合性。</div>
         <div class="fragment fade-up">
           <p>将<span class="color-red">不变的</span>和<span class="color-red">变化的</span>分隔开来:</p>
           <ul>
@@ -305,9 +306,36 @@
       </section>
       <section>
         <h4>使用职责链模式</h4>
+        <p>使多个对象都有机会处理请求，从而避免请求的<span class="color-red">发送者</span>和<span class="color-red">接收者</span>之间的耦合关系。</p>
+        <p class="fragment fade-up">
+          我们可以把如下四个对象连成<span class="color-red">一条链</span>，
+          并沿着该链条传递处理会议的请求，直到有一个对象能处理它为止：
+        </p>
+        <ul class="fragment fade-up">
+          <li>processForeverMeeting() 处理永久会议</li>
+          <li>processForeverOrNowMeeting() 处理立即会议</li>
+          <li>processMixedMeeting() 处理混合会议</li>
+          <li>processNormalMeeting() 处理正常会议</li>
+        </ul>
       </section>
       <section
         data-markdown="src/markdown/large-fn-3-after.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+      <section
+        data-markdown="src/markdown/large-fn-4-nodes.markdown"
+        data-separator="^\n\n\n"
+        data-separator-vertical="^\n\n"
+        data-separator-notes="^Note:"
+        data-charset="utf-8"
+        class="w-1200">
+      </section>
+      <section
+        data-markdown="src/markdown/large-fn-5-chain.markdown"
         data-separator="^\n\n\n"
         data-separator-vertical="^\n\n"
         data-separator-notes="^Note:"

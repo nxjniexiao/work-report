@@ -8,9 +8,9 @@
 Function.prototype.after = function(fn) {
   var _self = this;
   return function() {
-    var ret = _self.apply(_self, arguments);
+    var ret = _self.apply(this, arguments);
     if (ret === 'NEXT_NODE') {
-      return fn.apply(_self, arguments);
+      return fn.apply(this, arguments);
     }
     return ret;
   }

@@ -1,7 +1,9 @@
 HTML 中使用组件 date-time-selector:
 ```html
 <date-time-selector date="startDate" time="startTime"></date-time-selector>
-<date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"></date-time-selector>
+<date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"
+                    minutes-gradient="5" increased-minutes="60">
+</date-time-selector>
 ```
 组件定义：
 ```js
