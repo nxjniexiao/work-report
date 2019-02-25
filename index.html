@@ -191,10 +191,12 @@
         <div class="fragment fade-up">
           <div class="text-align-left color-red">变化的:</div>
           <ul>
-            <li>date&time: 日期&时间，如：'2019-02-16'&'14:00'</li>
-            <li><span class="color-grey">minDate&minTime</span>: 最小日期&时间</li>
-            <li><span class="color-grey">minutesGradient</span>: 分钟梯度，用于向后取整</li>
-            <li><span class="color-grey">increasedMinutes</span>: 计算默认时间时增加的分钟数</li>
+            <li>time: date对象，时间</li>
+            <li><span class="color-grey">minTime / maxTime</span>: date对象，最小/最大时间</li>
+            <li><span class="color-grey">mode</span>: 字符串，为'date'时仅显示日期弹窗</li>
+            <li><span class="color-grey">isSameDay</span>: 布尔值，为true时日期弹窗不可用</li>
+            <li><span class="color-grey">minutesGradient</span>: 数值，分钟梯度，用于向后取整</li>
+            <li><span class="color-grey">increasedMinutes</span>: 数值，默认时间增加的分钟数</li>
           </ul>
         </div>
         <div class="fragment fade-up">
@@ -202,8 +204,7 @@
           <ul>
             <li>初始化 layDate 插件</li>
             <li>插件中选择日期和时间后，更新 model 中的值</li>
-            <li>限制插件可选日期和时间大于当前值和最小值</li>
-            <li>监听最小值，更新插件的限制条件，等等</li>
+            <li>最大/最小值的限制等等</li>
           </ul>
         </div>
       </section>
@@ -536,14 +537,20 @@
     <div class="form-group form-group-10">
       <label class="control-label col-md-4 font-size-30">开会时间</label>
       <div class="col-md-7 margin-top-10">
-        <date-time-selector date="startDate" time="startTime" minutes-gradient="5"></date-time-selector>
+        <date-time-selector time="startTime" minutes-gradient="5"></date-time-selector>
       </div>
     </div>
     <div class="form-group form-group-10">
       <label class="control-label col-md-4 font-size-30">结束时间</label>
       <div class="col-md-7 margin-top-10">
-        <date-time-selector date="endDate" time="endTime" min-date="startDate" min-time="startTime"
-                            minutes-gradient="5" increased-minutes="60"></date-time-selector>
+        <date-time-selector time="endTime" min-time="startTime" minutes-gradient="5" increased-minutes="60"
+                            is-same-day="true"></date-time-selector>
+      </div>
+    </div>
+    <div class="form-group form-group-10">
+      <label class="control-label col-md-4 font-size-30">调试时间</label>
+      <div class="col-md-7 margin-top-10">
+        <date-time-selector time="debugTime" max-time="startTime" mode="date"></date-time-selector>
       </div>
     </div>
   </form>

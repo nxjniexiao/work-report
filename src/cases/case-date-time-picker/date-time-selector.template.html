@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-5">
-    <input class="form-control" type="text" ng-attr-id="{{dateId}}" ng-model="date" ng-disabled="minDate">
+    <input class="form-control" type="text" ng-attr-id="{{dateId}}" ng-model="dateStr" ng-disabled="isSameDay">
   </div>
-  <div class="col-md-5">
-    <input class="form-control" type="text" ng-attr-id="{{timeId}}" ng-model="time">
+  <div class="col-md-5" ng-if="mode!=='date'">
+    <input class="form-control" type="text" ng-attr-id="{{timeId}}" ng-model="timeStr">
   </div>
   <!--<div class="col-md-4 col-xs-4 col-sm-4 padding-left">-->
     <!--<div class="input-group date">-->
