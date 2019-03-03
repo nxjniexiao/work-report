@@ -56,23 +56,23 @@
       </section>
       <section>
         <h4>金茂/东方锅炉 WEB</h4>
+        <img src="src/images/web.png" style="width: 900px" alt="">
       </section>
     </section>
     <section>
       <section>
         <h3>工作收获</h3>
-        <ul>
+        <ol class="fragment fade-up">
           <li>对angularJS中指令的理解</li>
           <li>合理的组件设计</li>
           <li>代码重构</li>
-          <li>避免重排版</li>
           <li>页面性能优化</li>
-        </ul>
+        </ol>
       </section>
     </section>
     <section>
       <section>
-        <h3>对指令的理解</h3>
+        <h3>I. 对指令的理解</h3>
         <p>与 Vue 和 React 不同，AngularJS 在 1.5 版本之前是没有组件方法的。</p>
         <p>AngularJS 中组件是一种特殊的指令。</p>
         <p class="fragment fade-up">指令有四种类型：</p>
@@ -120,7 +120,7 @@
     </section>
     <section>
       <section>
-        <h3>合理的组件设计</h3>
+        <h3>II.合理的组件设计</h3>
         <div class="fragment fade-up text-align-left">《JS设计模式与开发实践》中:</div>
         <div class="fragment fade-up margin-top-30">
           <div class="text-align-left"><span class="color-red">开放-封闭原则</span>的思想：</div>
@@ -224,7 +224,7 @@
     </section>
     <section>
       <section>
-        <h3>代码重构</h3>
+        <h3>III. 代码重构</h3>
         <div class="text-align-left">《JS设计模式与开发实践》中:</div>
         <div class="text-align-left">
           模式和重构之间有着一种与生俱来的关系。
@@ -347,31 +347,7 @@
     </section>
     <section>
       <section>
-        <h3>避免重排版</h3>
-        <p>当元素的<span class="color-red">尺寸</span>和<span class="color-red">位置</span>发生变化时，浏览器需要重新计算其属性以及其他受影响元素的属性，这时会发生重排版。
-        </p>
-        <p class="fragment fade-up">下述情况会发生重排版：</p>
-        <ul class="fragment fade-up">
-          <li>添加或删除可见的 DOM 元素；</li>
-          <li>元素位置和尺寸的改变；</li>
-          <li>页面首次渲染；</li>
-          <li>改变浏览器的窗口尺寸等。</li>
-        </ul>
-      </section>
-      <section>
-        <p>大多数浏览器通过<span class="color-red">队列化修改</span>和<span class="color-red">批量显示</span>优化重排版过程。</p>
-        <p class="fragment fade-up">获取<span class="color-red">布局信息</span>的操作将导致刷新队列动作：</p>
-        <ul class="fragment fade-up">
-          <li>offsetTop, offsetLeft, offsetWidth, offsetHeight</li>
-          <li>clientTop, clientLeft, clientWidth, clientHeight</li>
-          <li>scrollTop, scrollLeft, scrollWidth, scrollHeight</li>
-          <li>非IE: getComputedStyle(elm, null), IE: elm.currentStyle</li>
-        </ul>
-      </section>
-    </section>
-    <section>
-      <section>
-        <h3>页面性能优化 </h3>
+        <h3>IV. 页面性能优化 </h3>
         <p>进入会议室预约页面时，等待时间过长</p>
         <p>使用谷歌浏览器开发工具中的 <span class="color-red">Performance</span> 对页面进行优化</p>
       </section>
@@ -479,11 +455,11 @@
         <div class="fragment fade-up">
           <p class="color-grey font-size-30">
             优化前: <span class="color-red">8602</span> 个单元发生了样式重计算，
-            <span class="color-red">15763/16022</span> 个单元发生了样式重计算
+            <span class="color-red">15763/16022</span> 个节点发生了布局重计算
           </p>
           <p class="color-grey font-size-30">
-            优化后: <span class="color-blue margin-left-18">136</span> 个节点发生了样式重计算，
-            <span class="color-blue margin-left-52">241/2213</span> 个节点发生了样式重计算
+            优化后: <span class="color-blue margin-left-18">136</span> 个单元发生了样式重计算，
+            <span class="color-blue margin-left-52">241/2213</span> 个节点发生了布局重计算
           </p>
         </div>
       </section>

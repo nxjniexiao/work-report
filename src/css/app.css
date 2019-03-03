@@ -55,3 +55,20 @@ p {
 .font-size-30 {
   font-size: 30px !important;
 }
+
+/* 隐藏 laydate 时间选择弹窗中的秒选项*/
+.laydate-time-list > li {
+  width: 50% !important;
+}
+
+.laydate-time-list > li:last-child {
+  display: none;
+}
+
+.laydate-time-list > li > ol > li {
+  padding-left: 54px;
+}
+
+.laydate-time-list > li > p {
+  text-align: center;
+}
