@@ -1,4 +1,3 @@
-#### 封装变化例子
 ##### DEMO 1 - 根据容纳人数筛选会议室
 ```js
 $scope.galleryfulList = [
